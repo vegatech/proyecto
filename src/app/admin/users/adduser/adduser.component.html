@@ -1,0 +1,29 @@
+<h1>Agregar Usuario</h1>
+<form #recievedUser="ngForm">
+
+  <label for="name">Nombre</label>
+  <input type="text" class="form-control" id="nombre" placeholder="nombre" [(ngModel)]="usuario.nombre" name="nombre">
+
+  <label for="type">Usuario</label>
+  <input type="text" class="form-control" id="usuario" placeholder="usuario" [(ngModel)]="usuario.usuario" name="usuario">
+  
+  <label for="password">Password</label>
+  <input type="password" class="form-control" id="password" placeholder="password" [(ngModel)]="usuario.password" name="password">
+
+  <label for="email">Email</label>
+  <input type="text" class="form-control" id="email" placeholder="email" [(ngModel)]="usuario.email" name="email">
+
+  <label for="perfil">Perfil</label>
+  <input type="text" class="form-control" id="perfil" placeholder="perfil" [(ngModel)]="usuario.idPerfil" name="perfil">
+
+  <label for="persona">Persona</label>
+  <input type="text" class="form-control" id="persona" placeholder="persona" [(ngModel)]="usuario.idPersona" name="persona">
+
+  <label for="estado">Estado</label>
+  <input type="text" class="form-control" id="estado" placeholder="estado" [(ngModel)]="usuario.estado" name="estado">
+
+
+
+   <br>
+  <button type="button" class="btn btn-success" (click)="addUser()">Guardar</button>
+</form>

@@ -1,0 +1,186 @@
+<nav class="navbar nav-item dropdown" style="background-color: black; margin-bottom: 0px;">
+    <a class="navbar-brand" [routerLink]="['/shop']" routerLinkActive="router-link-active"
+    style="color: white; font: 1.2em sans-serif; font-weight: 600; text-align: center;"></a>
+
+    <a class="navbar-toggler" style="font-size: xx-large; color: white; font-weight: 600; text-align: center;"  
+    data-toggle="collapse" data-target="#navbarSupportedContent" ><i class="pe-7s-menu"></i></a>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li><a style="color: white;"  [routerLink]="['/shop']"  data-toggle="collapse" data-target=".navbar-collapse.collapse" >Tienda</a></li>
+        <li><a style="color: white;"  [routerLink]="['/cart']"  data-toggle="collapse" data-target=".navbar-collapse.collapse" >Carrito</a></li>
+        <li><a style="color: white;"  [routerLink]="['/checkout']"  data-toggle="collapse" data-target=".navbar-collapse.collapse" >Finalizar Compra</a></li>
+
+      <li class="nav-item dropdown">
+        <a style="color: white;"   class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Empresa <i class="pe-7s-angle-right" style="font-size: large;"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a style="color: white;"  href="about.html">Ubicación</a></li>
+            <li><a style="color: white;"  href="cart.html">Nosotros</a></li>
+            <li><a style="color: white;"  href="checkout.html">Galeria</a></li>
+            <li><a style="color: white;"  href="checkout.html">Redes Sociales</a></li>
+        </div>
+      </li>
+
+        <li><a style="color: white;"  href="blog.html">Mensajes</a></li>
+        <li><a style="color: white;"  href="contact.html">Eventos</a></li>
+        <li><a style="color: white;"  (click)="cerrarSesion()"  data-toggle="collapse" data-target=".navbar-collapse.collapse" [routerLink]="['/shop']" routerLinkActive="router-link-active" >Cerrar Sesion</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<header class="header-area">
+    <!-- Header Start -->
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <!-- Logo Start -->
+                <div class="col-md-2 col-sm-6">
+                    <div class="logo">
+                        <a href="index.html"><img src="../../../assets/img/logo.png" alt="erina"></a>
+                    </div>
+                </div>
+                <!-- Logo End -->
+                <!-- MainMenu Start -->
+                <div class="col-md-7 hidden-sm hidden-xs">
+                    <div class="mainmenu">
+                        <nav>
+                            <ul>
+                                <li><a href="index.html">Inicio</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="shop.html">Women</a>
+                                    <div class="megamenu">
+                                        <div class="mega-top">
+                                            <span>
+                                                <a class="mega-menu-title" href="#">Dresses</a>
+                                                <a href="#">Casual Dresses</a>
+                                                <a href="#">Evening</a>
+                                                <a href="#">Designer</a>
+                                                <a href="#">Party</a>
+                                            </span>
+                                            <span>
+                                                <a class="mega-menu-title" href="#">Shoes</a>
+                                                <a href="#">Sport shoes</a>
+                                                <a href="#">Casual shoes</a>
+                                                <a href="#">Leather shoes</a>
+                                                <a href="#">Canvas shoes</a>
+                                            </span>
+                                            <span>
+                                                <a class="mega-menu-title" href="#">Accesories</a>
+                                                <a href="#">Backpacks</a>
+                                                <a href="#">Wallets</a>
+                                                <a href="#">Laptops Bags</a>
+                                                <a href="#">Belts</a>
+                                            </span>
+                                        </div>
+                                        <div class="mega-bottom">
+                                            <a href="#"><img src="../../../assets/img/megamenu/1.jpg" alt="#"></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="shop-list.html">Men</a></li>
+                                <li><a href="#">page's</a>
+                                    <ul class="submenu">
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="cart.html">Shopping Cart</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="my-account.html">My Account</a></li>
+                                        <li><a href="shop.html">Shop Grid View</a></li>
+                                        <li><a href="shop-list.html">Shop List View</a></li>
+                                        <li><a href="single-product.html">Single-Product</a></li>
+                                        <li><a href="single-blog.html">Single-blog</a></li>
+                                        <li><a href="404.html">404 Page</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- MainMenu End -->
+                <!-- Cart-Total Start -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="cart-total">
+                        <ul>
+                            <li>
+                                <a>
+                                    <span class="cart-icon"><i
+                                            class="pe-7s-cart"></i><sup>{{cartService.getListCart().length}}</sup></span>
+                                    <span class="cart-brief">Total: ${{cartService.calcularTotalCarrito()}}</span>
+                                </a>
+                                <div class="mini-cart-content">
+                                    <div *ngFor="let catalogo of cartService.getListCart();let i=index"
+                                        class="cart-img-details">
+                                        <div class="cart-img-photo">
+                                            <a><img src="{{catalogo.catalogo.retrievedImage}}"></a>
+                                        </div>
+                                        <div class="cart-img-content">
+                                            <h4 style="font-weight: bolder;"><a>{{catalogo.catalogo.descripcion}}</a>
+                                            </h4>
+                                            <span>Precio Unitario ${{catalogo.catalogo.precio}}</span> <br>
+                                            <span>X {{catalogo.cantidad}}</span>
+                                            <span> = ${{catalogo.catalogo.precio * catalogo.cantidad}}</span>
+                                        </div>
+                                        <div class="pro-del">
+                                            <a (click)="cartService.deleteItem(i)"><i
+                                                    class="pe-7s-trash text-danger"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+
+                                    <div class="cart-inner-bottom">
+                                        <p class="total">Total: ${{cartService.calcularTotalCarrito()}}</p>
+                                        <a [routerLink]="['/cart']" class="cart-button-top cart-left">Ver Carrito</a>
+                                        <a [routerLink]="['/checkout']" class="cart-button-top">Finalizar Compra</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Cart-Total End -->
+            </div>
+        </div>
+    </div>
+    <!-- Header END -->
+</header> <!-- HEADER-AREA START -->
+
+
+
+
+
+<!-- MOBILE-MENU-AREA START>
+<div class="mobile-menu-area hidden-md hidden-lg">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="mobile-menu">
+                    <nav id="dropdown">
+                        <ul>
+                            <li><a [routerLink]="['/shop']" routerLinkActive="router-link-active">Tienda</a></li>
+                            <li><a [routerLink]="['/cart']" routerLinkActive="router-link-active">Carrito</a></li>
+                            <li><a [routerLink]="['/checkout']" routerLinkActive="router-link-active">Finalizar
+                                    Compra</a></li>
+                            <li><a>Empresa</a>
+                                <ul class="submenu">
+                                    <li><a href="about.html">Ubicación</a></li>
+                                    <li><a href="cart.html">Nosotros</a></li>
+                                    <li><a href="checkout.html">Galeria</a></li>
+                                    <li><a href="checkout.html">Redes Sociales</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="blog.html">Mensajes</a></li>
+                            <li><a href="contact.html">Eventos</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div -->
+<!-- MOBILE-MENU-AREA END -->

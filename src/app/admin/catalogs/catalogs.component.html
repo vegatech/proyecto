@@ -1,0 +1,29 @@
+<h1>Catalogo Admin</h1>
+<a class="btn btn-primary mb-3" (click)="addCatalog()">Agregar Nuevo Producto</a>
+<div class="container row">
+  <div class="col-md-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto Nombre</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let catalogo of catalogos">
+          <td>{{catalogo.id}}</td>
+          <td>{{catalogo.descripcion}}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="viewCatalog(catalogo.id)">Ver Detalles</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <app-addcatalog *ngIf="action === 'edit' || action === 'add'" [catalogo]="selectedCatalog"(catalogAddedEvent)="refreshData()"></app-addcatalog>
+    <app-viewcatalog *ngIf="action === 'view'" [catalogo]="selectedCatalog"(catalogDeletedEvent)="refreshData()"></app-viewcatalog>
+  </div>
+
+</div>

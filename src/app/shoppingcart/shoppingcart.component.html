@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- Single-Product Start -->
+        <div *ngFor="let catalogo of catalogos;let i=index" class="col-sm-4">
+            <div class="single-product" style="border-bottom: 0.5px solid gray;">
+                <table class="table borderless">
+                    <thead>
+                        <tr>
+                            <th colspan="3">
+                                <h2 class="product-name">
+                                    <a>{{catalogo.descripcion}}</a>
+                                </h2>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" rowspan="2">
+                                <div>
+                                    <a>
+                                        <img src="{{catalogo.retrievedImage}}" width="150px" alt="imagen del producto">
+                                    </a>
+                                </div>
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="price-box">
+                                    <span class="new-price">$ {{catalogo.precio}}</span>
+                                </div><br><br>
+                                <app-contador [catalogo]="catalogo" [addBotoom]="true" (addToCartConteo)="addSomeToCart($event)" ></app-contador>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p style="text-align: justify;">
+                                    {{catalogo.detalle}}
+                                </p>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Single-Product End -->
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<h1>Catalogo Detalles</h1>
+
+<table>
+    <tr>
+        <td> Id</td>
+        <td>{{catalogo.id}}</td>
+    </tr>
+    <tr>
+        <td>Titulo</td>
+        <td>{{catalogo.descripcion}}</td>
+    </tr>
+    <tr>
+        <td>Descripcion</td>
+        <td>{{catalogo.detalle}}</td>
+    </tr>
+    <tr>
+        <td>Book Author</td>
+        <td>{{catalogo.descripcion}}</td>
+    </tr>
+    <tr>
+        <td>Precio</td>
+        <td>{{catalogo.precio}}</td>
+    </tr>
+</table>
+<br>
+<img src="{{catalogo.retrievedImage}}" height="200" width="200">
+<br><br>
+<a class="btn btn-small btn-warning" (click)="editCatalog()">Actualizar</a> 
+<a class="btn btn-small btn-danger" (click)="deleteCatalog()">Eliminar</a>
