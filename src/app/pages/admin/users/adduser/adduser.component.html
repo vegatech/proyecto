@@ -1,0 +1,94 @@
+<h1>Agregar Usuario</h1>
+<form #recievedUser="ngForm">
+
+  <label for="name">Nombre</label>
+  <input type="text" class="form-control" id="nombre" placeholder="nombre" [(ngModel)]="usuario.nombre" name="nombre">
+
+  <label for="type">Usuario</label>
+  <input type="text" class="form-control" id="usuario" placeholder="usuario" [(ngModel)]="usuario.usuario" name="usuario">
+  
+  <label for="password">Password</label>
+  <input type="password" class="form-control" id="password" placeholder="password" [(ngModel)]="usuario.password" name="password">
+
+  <label for="email">Email</label>
+  <input type="text" class="form-control" id="email" placeholder="email" [(ngModel)]="usuario.email" name="email">
+
+  <label for="perfil">Perfil</label>
+  <input type="text" class="form-control" id="perfil" placeholder="perfil" [(ngModel)]="usuario.idPerfil" name="perfil">
+  <div class="form-group">
+    <label class="col-form-label">Perfil</label>
+    <select class="form-c ontrol">
+      <option *ngFor="let i of perfiles">{{i.perfil}}</option>    
+    </select>
+  </div>
+  <label for="persona">Persona</label>
+  <input type="text" class="form-control" id="persona" placeholder="persona" [(ngModel)]="usuario.idPersona" name="persona">
+
+  <label for="estado">Estado</label>
+  <input type="text" class="form-control" id="estado" placeholder="estado" [(ngModel)]="usuario.estado" name="estado">
+  <div class="form-group">
+    <label class="col-form-label">Estado</label>
+    <select class="form-control">
+        <option>Activo</option>
+        <option>Inactivo</option>
+     
+    </select>
+</div>
+  <label for="apellido">Apellido</label>
+  <input type="text" class="form-control" id="apellido" placeholder="apellido" [(ngModel)]="persona.apellido" name="apellido">
+
+  <label for="empresa">Nombre de Empresa</label>
+  <input type="text" class="form-control" id="empresa" placeholder="empresa" [(ngModel)]="persona.empresa" name="empresa">
+
+  
+  <div class="form-group">
+    <label class="col-form-label">Categoria</label>
+    <select class="form-control">
+        <option>Costruccion</option>
+        <option>Belleza</option>
+        <option>Comida</option>
+        <option>Entregenimiento</option>
+     
+    </select>
+  </div>
+
+  <label for="empresa">Nro. Cedula o R.U.C.</label>
+  <input type="text" class="form-control" id="cedula" placeholder="cedula" [(ngModel)]="persona.cedula" name="cedula">
+
+
+  <label for="fechaNacimiento">Fecha Nacimiento</label>
+  <input type="text" class="form-control" id="fechaNacimiento" placeholder="fechaNacimiento" [(ngModel)]="persona.fechaNacimiento" name="fechaNacimiento">
+
+
+  <label for="descripcion">Descripcion</label>
+  <input type="text" class="form-control" id="descripcion" placeholder="descripcion" [(ngModel)]="persona.descripcion" name="descripcion">
+
+
+  <label for="direcccion">Direccion</label>
+  <input type="text" class="form-control" id="direccion" placeholder="direccion" [(ngModel)]="persona.direccion" name="direccion">
+
+
+  <label for="telefono">Telefono</label>
+  <input type="text" class="form-control" id="telefono" placeholder="telefono" [(ngModel)]="persona.telefono" name="telefono">
+
+
+  <label for="latitud">Latitud</label>
+  <input type="number" class="form-control" id="latitud" placeholder="latitud" [(ngModel)]="persona.latitud" name="latitud">
+
+
+  <label for="longitud">Longitud</label>
+  <input type="number" class="form-control" id="longitud" placeholder="longitud" [(ngModel)]="persona.longitud" name="longitud">
+
+  <label for="website">Website</label>
+  <input type="text" class="form-control" id="website" placeholder="website" [(ngModel)]="persona.website" name="website">
+
+  <label for="catalogourl">Catalogo URL</label>
+  <input type="text" class="form-control" id="catalogourl" placeholder="catalogourl" [(ngModel)]="persona.catalogourl" name="catalogourl">
+ 
+  <label for="webappurl">WebApp URL</label>
+  <input type="text" class="form-control" id="webappurl" placeholder="webappurl" [(ngModel)]="persona.webappurl" name="webappurl">
+  
+  
+  <br>
+   <button type="button" class="btn btn-success" (click)="addUser()">Guardar</button>
+</form>

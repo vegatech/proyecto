@@ -4,6 +4,7 @@ import { Usuario } from '../model/Usuario';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { URL_SERVICIOS } from '../config/config';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class HttpLoginService {
   token: string;
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    public router: Router
   ) {
     this.cargarStorage();
   }
@@ -32,7 +34,7 @@ export class HttpLoginService {
 
       let params = new URLSearchParams();
       params.set('grant_type', 'password');
-      params.set('username', usuario.nombre);
+      params.set('username', usuario.usuario);
       params.set('password', usuario.password);
       console.log('Elementos: ' + params.toString());
 
@@ -42,7 +44,7 @@ export class HttpLoginService {
         .pipe(map((resp: any) => { 
           console.log("Guardando Respuesta: " + resp.nombre);
            
-          this.guardarStorage(resp.access_token, resp.nombre, resp.idUser);
+          this.guardarStorage(resp.access_token, resp.nombre);
         }))
     }
 
@@ -56,10 +58,9 @@ export class HttpLoginService {
     }
   }
 
-  guardarStorage(token: string, usuario: Usuario, idUser: number) {
+  guardarStorage(token: string, usuario: Usuario) {
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
-    localStorage.setItem('idUser', JSON.stringify(idUser));
     this.usuario = usuario;
     this.token = token;
   }
@@ -68,4 +69,13 @@ export class HttpLoginService {
     return (this.token.length > 8) ? true : false;
   }
 
+  logout() {
+    this.usuario = null;
+    this.token = '';
+
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+
+    this.router.navigate(['/login']);
+  }
 }

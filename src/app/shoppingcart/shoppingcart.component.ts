@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Catalogo } from '../model/Catalogo';
 import { Router } from '@angular/router';
 import { HttpClientService } from '../service/http-client.service';
-import Swal from 'sweetalert2'
-import { HttpCartService } from '../service/http-cart.service';
-import { CartItem } from '../model/CartItem';
 
 @Component({
   selector: 'app-shoppingcart',
@@ -15,17 +12,22 @@ export class ShoppingcartComponent implements OnInit {
   catalogos: Array<Catalogo>;
   catalogosRecieved: Array<Catalogo>;
 
-  cartCatalogos: CartItem[];
+  cartCatalogos: any;
 
-  constructor(private router: Router, private httpClientService: HttpClientService, private cartService: HttpCartService) { }
+  constructor(private router: Router, private httpClientService: HttpClientService) { }
 
   ngOnInit(): void {
     this.httpClientService.getCatalogs().subscribe(
       response => this.handleSuccessfulResponse(response),
     );
-
-    this.cartCatalogos = this.cartService.cartListLocalStorage()
-
+     //from localstorage retrieve the cart item
+     let data = localStorage.getItem('cart');
+     //if this is not null convert it to JSON else initialize it as empty
+     if (data !== null) {
+       this.cartCatalogos = JSON.parse(data);
+     } else {
+       this.cartCatalogos = [];
+     }
   }
 
   // we will be taking the books response returned from the database
@@ -45,32 +47,46 @@ export class ShoppingcartComponent implements OnInit {
       //populate retrieved image field so that book image can be displayed
       catalogowithRetrievedImageField.img = catalogo.img;
       catalogowithRetrievedImageField.retrievedImage = 'data:image/jpeg;base64,' + catalogo.img;
-
+      
       catalogowithRetrievedImageField.precio = catalogo.precio;
       catalogowithRetrievedImageField.estatus = catalogo.estatus;
       catalogowithRetrievedImageField.img = catalogo.img;
       this.catalogos.push(catalogowithRetrievedImageField);
     }
   }
+  addToCart(catalogoId) {
+    //retrieve book from books array using the book id
+    let catalogo = this.catalogos.find(catalogo => {
+      return catalogo.id === +catalogoId;
+    });
+    let cartData = [];
+    //retrieve cart data from localstorage
+    let data = localStorage.getItem('cart');
+    //prse it to json 
+    if (data !== null) {
+      cartData = JSON.parse(data);
+    }
+    // add the selected book to cart data
+    cartData.push(catalogo);
+    //updated the cartBooks
+    this.updateCartData(cartData);
+    //save the updated cart data in localstorage
+    localStorage.setItem('cart', JSON.stringify(cartData));
+    //make the isAdded field of the book added to cart as true
+    catalogo.isAdded = true;
+  }
 
-  addToCart(cartItem: CartItem) {
-    this.cartService.addToCart(cartItem)
-
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'El producto fue agregado',
-      showConfirmButton: false,
-      timer: 1500
-    })
+  updateCartData(cartData) {
+    this.cartCatalogos = cartData;
   }
 
   goToCart() {
     this.router.navigate(['/shop']);
   }
 
-  addSomeToCart(cartItem:CartItem){
-    this.addToCart(cartItem)
+  emptyCart() {
+    this.cartCatalogos = [];
+    localStorage.clear();
   }
 
 }

@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpCartService } from 'src/app/service/http-cart.service';
+import { HttpLoginService } from '../../service/service.index';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styles: []
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public cartService: HttpCartService) {
-  }
+  constructor(
+    public _httploginservice: HttpLoginService
+  ) { }
 
-  ngOnInit(): void {
-  }
-
-  cerrarSesion(){
-    localStorage.clear()
+  ngOnInit() {
   }
 
 }

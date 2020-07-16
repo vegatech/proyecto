@@ -15,4 +15,5 @@ export class Persona {
     catalogourl: string;
     webappurl: string;
     idusuario: number;
+
 }
